@@ -7,14 +7,13 @@ weatherForm.addEventListener("submit", (e) => {
   e.preventDefault();
   messageOne.textContent = "Loading...";
   messageTwo.textContent = "";
-  fetch(`http://localhost:3000/weather?address=${addressUrl.value}`).then(
-    (response) =>
-      response.json().then((data) => {
-        console.log(data);
-        data.error
-          ? (messageOne.textContent = data.error)
-          : ((messageOne.textContent = `${data.location}`),
-            (messageTwo.textContent = `${data.forecast}`));
-      })
+  fetch(`/weather?address=${addressUrl.value}`).then((response) =>
+    response.json().then((data) => {
+      console.log(data);
+      data.error
+        ? (messageOne.textContent = data.error)
+        : ((messageOne.textContent = `${data.location}`),
+          (messageTwo.textContent = `${data.forecast}`));
+    })
   );
 });
